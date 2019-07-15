@@ -1,0 +1,29 @@
+<form class="text-center border border-light p-5" name="form" (ngSubmit)="f.form.valid && login()" #f="ngForm"
+      novalidate>
+    <p class="h4 mb-4">Sign in</p>
+    <div [ngClass]="{ 'has-error': f.submitted && !username.valid }">
+        <label for="username">Username</label>
+        <input type="text" class="form-control mb-4" name="username" [(ngModel)]="model.username" #username="ngModel"
+               required/>
+        <div *ngIf="f.submitted && !username.valid">Username Is Required</div>
+    </div>
+    <div [ngClass]="{ 'has-error': f.submitted && !password.valid }">
+        <label for="password">Password</label>
+        <input type="password" class="form-control mb-4" name="password" [(ngModel)]="model.password"
+               #password="ngModel" required/>
+        <div *ngIf="f.submitted && !password.valid">Password Is Required</div>
+    </div>
+    <div>
+        <div class="d-flex justify-content-around">
+            <div>
+                <!-- Remember me -->
+                <mdb-checkbox [default]="true">Remember me</mdb-checkbox>
+            </div>
+            <div>
+                <!-- Forgot password -->
+                <a href="#">Forgot password?</a>
+            </div>
+        </div>
+        <button mdbBtn color="info" block="true" class="my-4" [disabled]="loading">Login</button>
+    </div>
+</form>
